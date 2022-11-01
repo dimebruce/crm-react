@@ -1,17 +1,32 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
+import Layout from './assets/components/Layout'
+import Index from './assets/components/Index'
+import NuevoCliente from './assets/pages/NuevoCliente'
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 // Definiendo el router para pasarlo como prop al componente
 const router = createBrowserRouter([
   {
     path:     '/',
-    element:  <h1>Inicio</h1>
+    element:  <Layout/>,
+    children: [
+      {
+        index: true,
+        element: <Index/>
+      },
+      {
+        // Todo lo que este dentro de children va a heredar lo que contenga el componente Layout
+        path:     '/cliente/nuevo',
+        element:  <NuevoCliente/>
+      }
+    ]
   },
   {
-    path:     '/Nosotros',
-    element:  <h1>Nosotros</h1>
+    path: 'otro',
+    element: <h1>Esto es otro</h1>
   }
 ])
 
