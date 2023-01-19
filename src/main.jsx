@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 import Layout from './assets/components/Layout'
-import Index from './assets/components/Index'
+// Aquí importamos el loader que tenemos en el index, el que gracis a react router DOM podemos usar similar a un useEffect, ya que se ejecutará cuando esté vea un cambio
+import Index, { loader as clientesLoader } from './assets/components/Index'
 import NuevoCliente from './assets/pages/NuevoCliente'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
@@ -15,7 +16,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Index/>
+        element: <Index/>,
+        loader: clientesLoader
       },
       {
         // Todo lo que este dentro de children va a heredar lo que contenga el componente Layout
@@ -25,7 +27,7 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: 'otro',
+    path: 'Otro',
     element: <h1>Esto es otro</h1>
   }
 ])
